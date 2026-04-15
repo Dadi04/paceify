@@ -17,9 +17,11 @@ const LandingPage = () => {
                 <Link to={"/create-race"}>
                     <Button variant="primary">Create Race</Button>
                 </Link>
-                <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800">
-                    Learn More
-                </Button>
+                <Link to={"/learn-more"}>
+                    <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800">
+                        Learn More
+                    </Button>
+                </Link>
             </div>
         </section>
     );

@@ -1,19 +1,20 @@
+import { NavLink } from "react-router-dom";
 import Button from "./Button";
 
 const Nav = () => {
     return (
         <nav className="flex items-center justify-between px-8 py-4 border-b border-gray-800">
-            <div className="text-2xl font-bold text-orange-500 cursor-pointer">Paceify</div>
+            <NavLink to={"/"} className="text-2xl font-bold text-orange-500 cursor-pointer">Paceify</NavLink>
 
             <div className="hidden md:flex gap-8 text-sm text-gray-300">
-                <a href="#features">Features</a>
-                <a href="#how">How it works</a>
-                <a href="#about">About</a>
+                <NavLink to={"/features"}>Features</NavLink>
+                <NavLink to={"/how"}>How it works</NavLink>
+                <NavLink to={"/about"}>About</NavLink>
             </div>
 
-            <div className="flex gap-3">
+            <NavLink to={"/login"} className="flex gap-3">
                 <Button variant="outline">Log in</Button>
-            </div>
+            </NavLink>
         </nav>
     );
 };
