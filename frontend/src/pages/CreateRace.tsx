@@ -18,10 +18,11 @@ const CreateRace = () => {
     const [raceScoringType, setRaceScoringType] = useState<string>("Total distance");
 
     // localStorage implementation TODO
+    
+    const navigate = useNavigate();
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        const navigate = useNavigate();
         const race:Race = {
             name: raceName,
             description: raceDescription,

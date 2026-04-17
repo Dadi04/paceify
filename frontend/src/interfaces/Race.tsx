@@ -4,10 +4,10 @@ export interface Race {
     description?: string;
     raceType: "Running" | "Cycling";
     raceVisibility: "Private" | "Public";
-    coverImage?: string;
+    coverImage?: string; // use correct type TODO
     participants: number;
     teams: number;
-    startDate: Date;
-    endDate?: Date;
+    startDate: Date; // use time with date TODO
+    endDate?: Date; // use time with date TODO
     scoringType: string;
 }
