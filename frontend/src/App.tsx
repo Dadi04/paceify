@@ -4,14 +4,15 @@ import MainLayout from "./layouts/MainLayout";
 import LandingPage from "./pages/LandingPage";
 import CreateRace from "./pages/CreateRace";
 import Callback from "./pages/Callback";
+import type { StravaUser } from "./interfaces/StravaUser";
 
 function App() {
-  const [login, setLogin] = useState<any | null>(() => {
+  const [login, setLogin] = useState<StravaUser | null>(() => {
     const stored = localStorage.getItem("login");
     return stored ? JSON.parse(stored) : null;
   });
 
-  const handleSetLogin = (data: any) => {
+  const handleSetLogin = (data: StravaUser) => {
     localStorage.setItem("login", JSON.stringify(data));
     setLogin(data);
   };

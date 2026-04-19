@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import type { StravaUser } from "../interfaces/StravaUser";
 
 const Callback = ({ setLogin }: any) => {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Callback = ({ setLogin }: any) => {
         .then((response) => response.json())
         .then((data) => {
             console.log(data.athlete)
-            setLogin(data.athlete)
+            setLogin(data.athlete as StravaUser)
             navigate("/")
         })
         .catch((error) => {
