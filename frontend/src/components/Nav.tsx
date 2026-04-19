@@ -1,30 +1,10 @@
 import { NavLink } from "react-router-dom";
 import Button from "./Button";
-import { useState } from "react";
 
-const Nav = () => {
-    const [login, setLogin] = useState<any | null>(null) // instead of any, it should be StravaUser
+const Nav = ({ login }: any | null) => {
 
     const handleLogin = () => {
-        
-        window.location.href = `https://www.strava.com/oauth/authorize?client_id=${import.meta.env.VITE_STRAVA_CLIENT_ID}&redirect_uri=http://localhost:5173&response_type=code&scope=read`
-
-        const params = new URLSearchParams(window.location.search);
-        const code = params.get("code");
-
-        fetch("/api/login/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({code})
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-            setLogin(data)
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+        window.location.href = `https://www.strava.com/oauth/authorize?client_id=${import.meta.env.VITE_STRAVA_CLIENT_ID}&redirect_uri=http://localhost:5173/callback&response_type=code&scope=read`
     }
 
     return (
@@ -40,7 +20,7 @@ const Nav = () => {
             { login === null ? 
                 <Button onClick={handleLogin} variant="outline" className="flex gap-3">Log in with Strava</Button> 
                     : 
-                <img src={login.profile_medium} alt="favicon" />
+                <img src={login.profile_medium} alt="profile" width="50px" />
             }
             
         </nav>

@@ -4,12 +4,13 @@ import Footer from "../components/Footer";
 
 type MainLayoutProps = {
     children: ReactNode;
+    login: any | null
 };
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+const MainLayout = ({ children, login }: MainLayoutProps) => {
     return (
         <div className="min-h-screen bg-black text-white flex flex-col">
-            <Nav />
+            <Nav login={login} />
             <main className="flex-1">
                 {children}
             </main>
