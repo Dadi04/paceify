@@ -1,12 +1,12 @@
 namespace backend.Endpoints {
     public static class UserEndpoints {
         public static void MapUserEndpoints(this WebApplication app) {
-            app.MapPost("/api/login/", async (HttpContext context) => {
+            app.MapPost("/api/login/", async (HttpContext context, IHttpClientFactory httpClientFactory) => {
                 var req = await context.Request.ReadFromJsonAsync<LoginRequest>();
                 if (req?.Code == null) {
                     return Results.BadRequest("Missing code");
                 }
-                var httpClient = new HttpClient();
+                var httpClient = httpClientFactory.CreateClient();
 
                 var stravaResponse = await httpClient.PostAsJsonAsync(
                     "https://www.strava.com/oauth/token",
@@ -18,8 +18,12 @@ namespace backend.Endpoints {
                     }
                 );
 
+                if (!stravaResponse.IsSuccessStatusCode) {
+                    return Results.BadRequest("Strava auth failed");
+                }
+
                 var content = await stravaResponse.Content.ReadAsStringAsync();
-                Console.WriteLine(content);
+
                 return Results.Content(content, "application/json");
             });
         }

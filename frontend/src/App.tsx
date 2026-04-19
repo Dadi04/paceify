@@ -6,14 +6,23 @@ import CreateRace from "./pages/CreateRace";
 import Callback from "./pages/Callback";
 
 function App() {
-  const [login, setLogin] = useState<any | null>(null);
+  const [login, setLogin] = useState<any | null>(() => {
+    const stored = localStorage.getItem("login");
+    return stored ? JSON.parse(stored) : null;
+  });
+
+  const handleSetLogin = (data: any) => {
+    localStorage.setItem("login", JSON.stringify(data));
+    setLogin(data);
+  };
+
   return (
     <Router>
       <MainLayout login={login}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/create-race" element={<CreateRace />} />
-          <Route path="/callback" element={<Callback setLogin={setLogin} />}></Route>
+          <Route path="/callback" element={<Callback setLogin={handleSetLogin} />}></Route>
         </Routes>
       </MainLayout>
     </Router>

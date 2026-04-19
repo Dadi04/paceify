@@ -20,7 +20,7 @@ const Nav = ({ login }: any | null) => {
             { login === null ? 
                 <Button onClick={handleLogin} variant="outline" className="flex gap-3">Log in with Strava</Button> 
                     : 
-                <img src={login.profile_medium} alt="profile" width="50px" />
+                <img src={login.profile_medium} alt="profile" width="40px" />
             }
             
         </nav>
